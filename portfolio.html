@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aya Benkarrou — Ingénieure Génie Énergétique & Systèmes Intelligents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #EDEAE1;
+    --panel: #FAF8F3;
+    --ink: #15201D;
+    --ink-soft: #545B54;
+    --pine: #1F4C46;
+    --pine-deep: #12302C;
+    --brass: #AE6A26;
+    --signal: #C4432E;
+    --line: #D9D3C4;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    color:var(--pine);
+    margin:0 0 0.3em 0;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{color:var(--brass); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 28px;}
+  section{padding:76px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass); font-size:0.8rem; margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .kicker::before{ content:""; width:7px; height:7px; background:var(--brass); display:inline-block; }
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(237,234,225,0.94);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; justify-content:space-between; align-items:center; padding:15px 28px; }
+  nav .brand{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.05rem; color:var(--pine);}
+  nav .brand span{color:var(--brass);}
+  nav ul{list-style:none; display:flex; gap:2px; margin:0; padding:0;}
+  nav a{
+    color:var(--ink-soft); font-size:0.84rem; font-family:'IBM Plex Mono', monospace;
+    padding:8px 12px; border-bottom:2px solid transparent; transition:color .15s, border-color .15s;
+  }
+  nav a:hover{color:var(--pine); text-decoration:none;}
+  nav a.active{color:var(--pine); border-bottom-color:var(--brass);}
+  .nav-toggle{display:none; background:none; border:none; font-size:1.4rem; color:var(--pine); cursor:pointer;}
+
+  /* Hero */
+  .hero{padding:80px 0 60px 0;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;}
+  .hero h1{font-size:2.5rem; line-height:1.16; max-width:640px;}
+  .hero p.lede{font-size:1.06rem; color:var(--ink-soft); max-width:560px; margin-top:16px;}
+  .hero .contact-row{margin-top:30px; display:flex; flex-wrap:wrap; gap:20px 26px; font-family:'IBM Plex Mono', monospace; font-size:0.83rem; color:var(--ink-soft);}
+  .hero .contact-row span{white-space:nowrap;}
+
+  .readout{
+    background:var(--pine-deep); border:1px solid var(--pine-deep);
+    padding:0; overflow:hidden;
+  }
+  .readout-top{padding:18px 20px 4px 20px;}
+  .readout-label{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#9FB6AE; letter-spacing:0.02em;}
+  .readout svg{display:block; width:100%; height:auto;}
+  .readout-stats{display:grid; grid-template-columns:repeat(2,1fr);}
+  .readout-stats div{padding:16px 20px; border-top:1px solid rgba(255,255,255,0.12);}
+  .readout-stats div:nth-child(odd){border-right:1px solid rgba(255,255,255,0.12);}
+  .readout-num{font-family:'IBM Plex Mono', monospace; font-size:1.5rem; color:#EFEFE6; font-weight:600;}
+  .readout-num sup{font-size:0.85rem; color:#9FB6AE;}
+  .readout-cap{font-size:0.72rem; color:#9FB6AE; margin-top:3px;}
+
+  .about-grid{display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:start; margin-top:44px;}
+  .about-grid p{color:var(--ink-soft); max-width:56ch;}
+  .fact-list{list-style:none; margin:0; padding:0; border-top:1px solid var(--line);}
+  .fact-list li{ display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--line); font-size:0.9rem; }
+  .fact-list li span:first-child{color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; font-size:0.8rem;}
+  .fact-list li span:last-child{text-align:right; font-weight:500;}
+
+  /* Featured project */
+  .featured{background:var(--pine-deep); color:#EBEEE9;}
+  .featured .kicker{color:#C98A4B;}
+  .featured .kicker::before{background:#C98A4B;}
+  .featured h2{color:#FFFFFF; font-size:2rem; max-width:680px;}
+  .featured p.intro{color:#B9C7C0; max-width:64ch; font-size:1.01rem;}
+  .flow{ display:flex; flex-wrap:wrap; margin:36px 0 34px 0; }
+  .flow-step{
+    flex:1 1 120px; padding:14px 12px; font-size:0.76rem; text-align:center;
+    color:#EBEEE9; border:1px solid rgba(255,255,255,0.18); font-family:'IBM Plex Mono', monospace;
+    position:relative; margin-right:-1px;
+  }
+  .flow-step::after{
+    content:"→"; position:absolute; right:-13px; top:50%; transform:translateY(-50%);
+    color:#7C9A91; font-size:0.75rem; z-index:2;
+  }
+  .flow-step:last-child::after{content:"";}
+  .stat-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:rgba(255,255,255,0.16); margin-bottom:36px;}
+  .stat-card{background:#183A35; padding:20px 14px; text-align:center; border-top:2px solid #C98A4B;}
+  .stat-num{font-family:'IBM Plex Mono', monospace; font-size:1.4rem; color:#FFFFFF; font-weight:600;}
+  .stat-label{font-size:0.72rem; color:#A9BAB3; margin-top:5px; line-height:1.3;}
+  .featured .media-placeholder{ border-color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.04); color:#B9C7C0; }
+
+  /* Experience — conduit line */
+  .timeline{border-left:2px solid var(--pine); margin-left:6px; padding-left:32px; display:flex; flex-direction:column; gap:44px;}
+  .tl-item{position:relative;}
+  .tl-item::before{
+    content:""; position:absolute; left:-38.5px; top:5px;
+    width:11px; height:11px; background:var(--brass); border:2px solid var(--paper);
+  }
+  .tl-item .dates{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass); font-weight:500;}
+  .tl-item h3{font-size:1.15rem; margin-top:6px;}
+  .tl-item .org{color:var(--ink-soft); font-style:italic; margin-bottom:10px;}
+  .tl-item ul{margin:0; padding-left:20px; color:var(--ink-soft); font-size:0.94rem;}
+  .tl-item li{margin-bottom:6px;}
+  .todo{color:var(--signal);}
+
+  /* Projects */
+  .filter-row{display:flex; gap:8px; margin:8px 0 36px 0; flex-wrap:wrap;}
+  .filter-btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--ink-soft);
+    background:var(--panel); border:1px solid var(--line); padding:8px 16px; cursor:pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .filter-btn:hover{border-color:var(--pine);}
+  .filter-btn.active{background:var(--pine); color:#fff; border-color:var(--pine);}
+
+  .project{
+    display:grid; grid-template-columns: 1fr 1fr; gap:36px; align-items:center;
+    padding:36px 0; border-bottom:1px solid var(--line);
+    transition: opacity .2s, transform .2s;
+  }
+  .project.hidden{display:none;}
+  .project:last-child{border-bottom:none;}
+  .project:nth-child(even) .project-media{order:2;}
+  .media-placeholder{
+    width:100%; min-height:150px; border:1px dashed var(--line); background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:0.82rem; text-align:center; padding:20px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .project-body .tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--pine);
+    border:1px solid var(--pine); padding:3px 10px; margin-bottom:12px;
+  }
+  .project-body h3{font-size:1.2rem;}
+  .project-body p{color:var(--ink-soft); font-size:0.94rem;}
+  .project-body ul{color:var(--ink-soft); font-size:0.92rem; padding-left:18px; margin-top:10px;}
+  .project-body li{margin-bottom:5px;}
+  .stack{margin-top:14px; font-size:0.8rem; color:var(--brass); font-family:'IBM Plex Mono', monospace;}
+
+  /* Innovation */
+  .innov-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); margin-top:8px;}
+  .innov-card{background:var(--panel); padding:26px 26px; border-top:2px solid transparent;}
+  .innov-card h3{font-size:1.08rem; margin-top:8px;}
+  .innov-card .role{color:var(--ink-soft); font-size:0.82rem; font-style:italic; margin-bottom:10px;}
+  .innov-card p{color:var(--ink-soft); font-size:0.92rem; margin:0 0 10px 0;}
+  .innov-card .chip-row{margin-top:10px;}
+  .innov-card img{width:100%; border:1px solid var(--line); margin-top:14px; cursor:zoom-in;}
+  .innov-full{grid-column:1/-1;}
+  .innov-sub{margin-top:8px; color:var(--ink-soft); font-size:0.9rem;}
+  .innov-sub li{margin-bottom:4px;}
+  .badge{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass);}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns: repeat(2, 1fr); gap:34px;}
+  .skill-group h3{font-family:'IBM Plex Mono', monospace; font-size:0.86rem; font-weight:500; margin-bottom:12px; color:var(--pine); text-transform:none;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    background:var(--panel); border:1px solid var(--line);
+    padding:6px 12px; font-size:0.83rem; color:var(--ink);
+  }
+
+  /* Recommendations */
+  .reco-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line);}
+  .reco-card{background:var(--panel);}
+  .reco-card img{ width:100%; display:block; aspect-ratio: 3/4; object-fit:cover; object-position:top; cursor:zoom-in; border-bottom:1px solid var(--line); }
+  .reco-card .reco-info{padding:16px 18px;}
+  .reco-card .reco-name{font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--pine); font-size:1rem;}
+  .reco-card .reco-role{color:var(--ink-soft); font-size:0.83rem; margin-top:3px;}
+
+  /* Lightbox */
+  .lightbox{ display:none; position:fixed; inset:0; z-index:50; background:rgba(17,20,17,0.9); align-items:center; justify-content:center; padding:40px; }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:100%; box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+  .lightbox-close{ position:absolute; top:24px; right:32px; color:#fff; font-size:2rem; background:none; border:none; cursor:pointer; line-height:1; }
+
+  footer{padding:46px 0 66px 0; text-align:center; color:var(--ink-soft); font-size:0.85rem; font-family:'IBM Plex Mono', monospace;}
+  footer a{color:var(--pine);}
+
+  /* Reveal on scroll — one quiet, consistent treatment */
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+    .reveal.in{ opacity:1; transform:translateY(0); }
+  }
+
+  @media (max-width: 760px){
+    nav ul{ display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); flex-direction:column; gap:0; border-bottom:1px solid var(--line); }
+    nav ul.open{display:flex;}
+    nav ul li{border-top:1px solid var(--line);}
+    nav ul a{display:block; padding:14px 28px;}
+    .nav-toggle{display:block;}
+    .hero h1{font-size:1.9rem;}
+    .hero-grid, .about-grid, .project, .skills-grid, .innov-grid{grid-template-columns:1fr;}
+    .project:nth-child(even) .project-media{order:0;}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .flow-step::after{display:none;}
+    .reco-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Aya Benkarrou<span>.</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul id="navList">
+      <li><a href="#about" class="navlink">À propos</a></li>
+      <li><a href="#featured" class="navlink">Projet vedette</a></li>
+      <li><a href="#projects" class="navlink">Projets</a></li>
+      <li><a href="#experience" class="navlink">Expérience</a></li>
+      <li><a href="#innovation" class="navlink">Innovation</a></li>
+      <li><a href="#skills" class="navlink">Compétences</a></li>
+      <li><a href="#contact" class="navlink">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="about">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">ingénieure d'état — génie énergétique & systèmes intelligents</div>
+      <h1>Modéliser, optimiser et donner à voir la performance des systèmes industriels.</h1>
+      <p class="lede">Jeune ingénieure spécialisée en jumeaux numériques, modélisation de procédés et systèmes intelligents — de la simulation physique à l'interface de supervision.</p>
+      <div class="contact-row">
+        <span>Fès, Maroc — mobilité nationale</span>
+        <span><a href="mailto:benkarrouaya2021@gmail.com">benkarrouaya2021@gmail.com</a></span>
+        <span>+212 617 290 872</span>
+        <span><a href="#" target="_blank">LinkedIn — [lien à ajouter]</a></span>
+      </div>
+    </div>
+
+    <div class="readout reveal">
+      <div class="readout-top">
+        <div class="readout-label">JFC5 — DIGITAL TWIN / LIVE READOUT</div>
+      </div>
+      <svg viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="55" x2="330" y2="55" stroke="#3E5F58" stroke-width="1.5"/>
+        <line id="flowDash" x1="10" y1="55" x2="330" y2="55" stroke="#C98A4B" stroke-width="2" stroke-dasharray="6 10"/>
+        <circle cx="40" cy="55" r="5" fill="#EFEFE6"/>
+        <circle cx="170" cy="55" r="5" fill="#EFEFE6"/>
+        <circle cx="300" cy="55" r="5" fill="#C98A4B"/>
+        <text x="40" y="80" fill="#9FB6AE" font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle">feed</text>
+        <text x="170" y="80" fill="#9FB6AE" font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle">reactor model</text>
+        <text x="300" y="80" fill="#9FB6AE" font-family="IBM Plex Mono, monospace" font-size="9" text-anchor="middle">twin</text>
+      </svg>
+      <div class="readout-stats">
+        <div><div class="readout-num" data-count="97" data-suffix="%">0%</div><div class="readout-cap">précision prédictive</div></div>
+        <div><div class="readout-num" data-count="10" data-suffix="+">0+</div><div class="readout-cap">modèles d'équipements</div></div>
+        <div><div class="readout-num" data-count="300" data-suffix="+ h">0+ h</div><div class="readout-cap">données industrielles</div></div>
+        <div><div class="readout-num" data-count="2026">0</div><div class="readout-cap">soutenance PFE</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p>Diplômée d'un Diplôme d'Ingénieur d'État en Génie Énergétique et Systèmes Intelligents de l'ENSA Fès (Mention Bien). Mon projet de fin d'études, mené au DICE FactoryLab (UM6P Benguerir), porte sur le développement d'un jumeau numérique d'une unité industrielle de production d'acide sulfurique.</p>
+      <p>Au fil de mes stages, j'ai développé une expérience concrète en diagnostic de performance énergétique en environnement de production (LafargeHolcim) et en supervision de systèmes électriques via SCADA (RADEM).</p>
+    </div>
+    <ul class="fact-list reveal">
+      <li><span>formation</span><span>Ingénieure d'État — ENSA Fès (2021–2026)</span></li>
+      <li><span>mention</span><span>Mention Bien</span></li>
+      <li><span>bac</span><span>Sciences Physiques, Mention TB (2021)</span></li>
+      <li><span>langues</span><span>Arabe (natif), Français C1, Anglais C1</span></li>
+      <li><span>mobilité</span><span>Nationale — Permis B</span></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Featured Project -->
+<section class="featured" id="featured">
+  <div class="wrap">
+    <div class="kicker">projet vedette — projet de fin d'études</div>
+    <h2 class="reveal">Digital Twin — JFC5 Sulfuric Acid Unit</h2>
+    <p class="intro reveal">Jumeau numérique complet d'une unité industrielle multi-étapes (procédé DCDA, OCP Group), combinant modèles physiques, simulation dynamique et supervision temps réel, développé au DICE FactoryLab (UM6P Benguerir).</p>
+
+    <div class="flow reveal">
+      <div class="flow-step">industrial data</div>
+      <div class="flow-step">physical models</div>
+      <div class="flow-step">dynamic simulation</div>
+      <div class="flow-step">calibration</div>
+      <div class="flow-step">validation</div>
+      <div class="flow-step">optimization</div>
+      <div class="flow-step">dashboard</div>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-num" data-count="10" data-suffix="+">0+</div><div class="stat-label">equipment models</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="300" data-suffix="+ h">0+ h</div><div class="stat-label">industrial data</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="97" data-suffix="%">0%</div><div class="stat-label">predictive accuracy</div></div>
+      <div class="stat-card"><div class="stat-num-static">Dynamic</div><div class="stat-label">simulation</div></div>
+      <div class="stat-card"><div class="stat-num-static">Py</div><div class="stat-label">Python + SciPy + Streamlit</div></div>
+    </div>
+
+    <div class="media-placeholder reveal">Capture d'écran à ajouter (ex. synoptique P&ID Streamlit)</div>
+  </div>
+</section>
+
+<!-- Selected Projects -->
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker">selected projects</div>
+    <h2 class="reveal">Projets</h2>
+
+    <div class="filter-row reveal">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="stage">Stages</button>
+      <button class="filter-btn" data-filter="academique">Académiques</button>
+    </div>
+
+    <div class="project reveal" data-cat="stage">
+      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter</div></div>
+      <div class="project-body">
+        <span class="tag">Stage — LafargeHolcim</span>
+        <h3>Performance énergétique — Réseau d'air comprimé</h3>
+        <p>Diagnostic de performance d'un réseau d'air comprimé industriel : identification de fuites et pertes de charge responsables de 15 % des pertes énergétiques totales, propositions d'amélioration pour un gain annuel estimé à 180 MWh.</p>
+        <div class="stack">audit énergétique · amélioration continue</div>
+      </div>
+    </div>
+
+    <div class="project reveal" data-cat="stage">
+      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter</div></div>
+      <div class="project-body">
+        <span class="tag">Stage — RADEM</span>
+        <h3>Supervision SCADA — Réseau électrique</h3>
+        <p>Étude des systèmes SCADA et des outils de supervision temps réel d'un réseau électrique.</p>
+        <div class="stack">SCADA</div>
+      </div>
+    </div>
+
+    <div class="project reveal" data-cat="academique">
+      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter<br>(ex. distribution de température Abaqus)</div></div>
+      <div class="project-body">
+        <span class="tag">Projet académique</span>
+        <h3>Modélisation thermique par éléments finis</h3>
+        <p>Modèles thermiques transitoires par éléments finis pour simuler le transfert de chaleur dans des systèmes électroniques embarqués, avec analyse des distributions de température et des stratégies de refroidissement.</p>
+        <div class="stack">Abaqus</div>
+      </div>
+    </div>
+
+    <div class="project reveal" data-cat="academique">
+      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter<br>(ex. courbe de puissance MPPT)</div></div>
+      <div class="project-body">
+        <span class="tag">Projet académique</span>
+        <h3>Commande MPPT pour système éolien</h3>
+        <p>Système de commande à vitesse variable pour optimiser l'efficacité d'extraction de puissance d'une éolienne.</p>
+        <div class="stack">MATLAB / Simulink</div>
+      </div>
+    </div>
+
+    <div class="project reveal" data-cat="academique">
+      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter<br>(ex. interface LabVIEW)</div></div>
+      <div class="project-body">
+        <span class="tag">Projet académique</span>
+        <h3>Monitoring photovoltaïque en temps réel</h3>
+        <p>Cadre d'acquisition et de traitement de données en temps réel pour une station de monitoring météorologique.</p>
+        <div class="stack">CompactRIO · LabVIEW</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker">experience</div>
+    <h2 class="reveal">Expérience Professionnelle</h2>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="dates">02/02/2026 – 02/08/2026 · Soutenance : 22/06/2026</div>
+        <h3>Ingénieure — Projet de Fin d'Études (Digital Twin JFC5)</h3>
+        <div class="org">DICE FactoryLab, Université Mohammed VI Polytechnique (UM6P) | Benguerir</div>
+        <ul>
+          <li>Développement complet du jumeau numérique présenté en projet vedette ci-dessus.</li>
+          <li>Supervisée par le Pr. Chaibi Yassine et le Dr. Amine Mounaam.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="dates"><span class="todo">[dates à préciser]</span></div>
+        <h3>Stagiaire Ingénieure — Performance énergétique industrielle</h3>
+        <div class="org">LafargeHolcim | Meknès</div>
+        <ul>
+          <li>Diagnostic de performance d'un réseau d'air comprimé industriel : identification de fuites et pertes de charge responsables de 15 % des pertes énergétiques totales du système.</li>
+          <li>Propositions d'amélioration pour un gain annuel estimé à 180 MWh.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="dates"><span class="todo">[dates à préciser]</span></div>
+        <h3>Stagiaire Ingénieure — Exploitation du réseau électrique</h3>
+        <div class="org">RADEM | Meknès</div>
+        <ul>
+          <li>Étude des systèmes SCADA et des outils de supervision temps réel d'un réseau électrique.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Innovation & Leadership -->
+<section id="innovation">
+  <div class="wrap">
+    <div class="kicker">innovation & leadership</div>
+    <h2 class="reveal">Innovation & Engagement</h2>
+    <div class="innov-grid reveal">
+
+      <div class="innov-card" style="border-top-color:#C98A4B;">
+        <div class="badge">JESI 2025 — 1ère place</div>
+        <h3>PowerUp Club, ENSA Fès</h3>
+        <div class="role">Journée Énergétique & Systèmes Intelligents</div>
+        <p>Équipe (promo 2024) classée 1ère avec le projet <strong>EcoTwin</strong>.</p>
+        <div class="chip-row">
+          <span class="chip">Digital Twin</span>
+          <span class="chip">Énergie</span>
+          <span class="chip">Gamification</span>
+        </div>
+      </div>
+
+      <div class="innov-card" style="border-top-color:#1F4C46;">
+        <div class="badge">concept</div>
+        <h3>EcoTwin — Digital Energy Assistant</h3>
+        <div class="role">Innovation & Digitalisation</div>
+        <p>Assistant numérique combinant analyse de données énergétiques et principes de jumeau numérique simplifié, avec une couche de gamification transformant les économies d'énergie en défis mesurables.</p>
+        <p class="mono" style="font-size:0.8rem;">energy data → analysis → diagnosis → recommendations → action → tracking</p>
+        <div class="chip-row">
+          <span class="chip">Digital Twin</span>
+          <span class="chip">Energy Efficiency</span>
+          <span class="chip">Gamification</span>
+        </div>
+      </div>
+
+      <div class="innov-card" style="border-top-color:#AE6A26;">
+        <div class="badge">concept</div>
+        <h3>CrochetVolt — Smart Textile Energy Harvesting</h3>
+        <div class="role">Innovation & Entrepreneuriat</div>
+        <p>Concept explorant l'intersection entre textiles intelligents et récupération d'énergie : convertir des interactions mécaniques (mouvement, déformation, pression) en énergie électrique exploitable pour des applications basse consommation. Prolongé par <strong>CrochetVolt Academy</strong>, un concept pédagogique rendant l'énergie et les technologies émergentes accessibles par l'apprentissage créatif.</p>
+        <div class="chip-row">
+          <span class="chip">Energy Harvesting</span>
+          <span class="chip">Smart Textiles</span>
+          <span class="chip">STEM Education</span>
+        </div>
+      </div>
+
+      <div class="innov-card" style="border-top-color:#C4432E;">
+        <div class="badge">25/02/2025</div>
+        <h3>Hult Prize — Sélection Hult International Business School</h3>
+        <div class="role">UN Office for Partnerships, ENSA Fès</div>
+        <p>Participation au Hult Prize avec CrochetVolt, sous la supervision du Pr. Asmae Achahbar et du Pr. Manar Dahbi. Sélectionnée pour représenter l'ENSA Fès, l'Université Sidi Mohamed Ben Abdellah et le Maroc dans un programme de formation à la Hult International Business School.</p>
+        <img src="images/hultprize-selection.jpg" alt="Publication ENSA Fès annonçant la sélection d'Aya Benkarrou pour Hult International Business School" onclick="openLightbox(this.src)">
+      </div>
+
+      <div class="innov-card innov-full" style="border-top-color:#1F4C46;">
+        <div class="badge">leadership & engagement</div>
+        <h3>PowerUp Club — ENSA Fès</h3>
+        <ul class="innov-sub">
+          <li>Organisation de JESI (Journée Énergétique & Systèmes Intelligents)</li>
+          <li>Participation à des événements autour de l'énergie et des systèmes intelligents</li>
+          <li>Animation / transmission de notions de Python</li>
+        </ul>
+      </div>
+
+      <div class="innov-card innov-full" style="border-top-color:#AE6A26;">
+        <div class="badge">n8n / ai / digital workflows</div>
+        <h3>Automation Projects</h3>
+        <ul class="innov-sub">
+          <li>Event Manager Agent</li>
+          <li>Automatisations Kapwing</li>
+          <li>Autres workflows n8n</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker">technical stack</div>
+    <h2 class="reveal">Compétences</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <h3>simulation / modélisation</h3>
+        <div class="chip-row">
+          <span class="chip">ANSYS Fluent</span>
+          <span class="chip">COMSOL</span>
+          <span class="chip">Abaqus</span>
+          <span class="chip">Aspen / DWSIM</span>
+          <span class="chip">TRNSYS</span>
+          <span class="chip">SAM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>énergie</h3>
+        <div class="chip-row">
+          <span class="chip">PVsyst</span>
+          <span class="chip">RETScreen</span>
+          <span class="chip">Dialux</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>programmation / data</h3>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">C</span>
+          <span class="chip">VBA</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>automation / digital</h3>
+        <div class="chip-row">
+          <span class="chip">Streamlit</span>
+          <span class="chip">n8n</span>
+          <span class="chip">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>instrumentation / contrôle</h3>
+        <div class="chip-row">
+          <span class="chip">LabVIEW</span>
+          <span class="chip">CompactRIO</span>
+          <span class="chip">SCADA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>qualité, sécurité & gestion</h3>
+        <div class="chip-row">
+          <span class="chip">ISO 9001</span>
+          <span class="chip">ISO 14001</span>
+          <span class="chip">ISO 45001</span>
+          <span class="chip">Lean — 5S, Kaizen, VSM</span>
+          <span class="chip">SAP PM</span>
+          <span class="chip">CAPEX/OPEX · LCOH · NPV/IRR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recommendations -->
+<section id="recommendations">
+  <div class="wrap">
+    <div class="kicker">recommendations</div>
+    <h2 class="reveal">Recommandations</h2>
+    <div class="reco-grid reveal">
+      <div class="reco-card">
+        <img src="images/amine-mounaam-recommandation.jpg" alt="Fiche d'appréciation de stage — Dr. Amine Mounaam" onclick="openLightbox(this.src)">
+        <div class="reco-info">
+          <div class="reco-name">Dr. Amine Mounaam</div>
+          <div class="reco-role">Encadrant du stage PFE — DICE FactoryLab, UM6P Benguerir</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <img src="images/loubna-ibn-elmanary-recommandation.jpg" alt="Lettre de recommandation — Loubna Ibn Elmanary" onclick="openLightbox(this.src)">
+        <div class="reco-info">
+          <div class="reco-name">Loubna Ibn Elmanary</div>
+          <div class="reco-role">Ingénieure, DICE FactoryLab — UM6P Benguerir</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <img src="images/saloua-ouhaibi-recommandation.jpg" alt="Lettre de recommandation — Pr. Salma Ouhaibi" onclick="openLightbox(this.src)">
+        <div class="reco-info">
+          <div class="reco-name">Pr. Salma Ouhaibi</div>
+          <div class="reco-role">Professeure, Département de Génie Industriel — ENSA Fès</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="wrap">
+    <div class="kicker">contact</div>
+    <h2 class="reveal">Contact</h2>
+    <p class="reveal" style="color:var(--ink-soft); max-width:56ch;">Ouverte aux opportunités en ingénierie process, digitalisation industrielle et recherche appliquée. N'hésitez pas à me contacter.</p>
+    <div class="contact-row reveal" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:20px 26px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--ink-soft);">
+      <span><a href="mailto:benkarrouaya2021@gmail.com">benkarrouaya2021@gmail.com</a></span>
+      <span>+212 617 290 872</span>
+      <span><a href="#" target="_blank">LinkedIn — [lien à ajouter]</a></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Aya Benkarrou — Ingénieure Génie Énergétique & Systèmes Intelligents
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+  <img id="lightbox-img" src="" alt="Aperçu agrandi">
+</div>
+
+<script>
+  // Mobile nav
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navList').classList.toggle('open');
+  });
+
+  // Lightbox
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Animated counters
+  function animateCount(el){
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const isYear = target > 1900 && target < 2100 && !el.dataset.suffix;
+    const duration = 1100;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(target * eased);
+      el.textContent = val + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+  const counters = document.querySelectorAll('[data-count]');
+  if('IntersectionObserver' in window){
+    const cIo = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ animateCount(entry.target); cIo.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(el => cIo.observe(el));
+  } else {
+    counters.forEach(el => { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
+  }
+
+  // Project filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project[data-cat]');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      projects.forEach(p=>{
+        p.classList.toggle('hidden', f !== 'all' && p.dataset.cat !== f);
+      });
+    });
+  });
+
+  // Scrollspy nav
+  const navLinks = document.querySelectorAll('.navlink');
+  const sections = Array.from(navLinks).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = sections.length - 1;
+    const y = window.scrollY + 120;
+    for(let i=0;i<sections.length;i++){
+      if(sections[i] && sections[i].offsetTop > y){ idx = i - 1; break; }
+    }
+    navLinks.forEach((l,i)=> l.classList.toggle('active', i === Math.max(idx,0)));
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+</script>
+
+</body>
+</html>
