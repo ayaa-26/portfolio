@@ -68,26 +68,14 @@
   .nav-toggle{display:none; background:none; border:none; font-size:1.4rem; color:var(--pine); cursor:pointer;}
 
   /* Hero */
-  .hero{padding:80px 0 60px 0;}
-  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;}
-  .hero h1{font-size:2.5rem; line-height:1.16; max-width:640px;}
+  .hero{padding:60px 0 60px 0;}
+  .hero-top{display:flex; align-items:center; gap:18px; margin-bottom:36px;}
+  .hero-top img{width:76px; height:76px; object-fit:cover; border-radius:50%; border:2px solid var(--pine);}
+  .hero-top .hero-name{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.5rem; color:var(--pine);}
+  .hero h1{font-size:2.5rem; line-height:1.16; max-width:680px;}
   .hero p.lede{font-size:1.06rem; color:var(--ink-soft); max-width:560px; margin-top:16px;}
   .hero .contact-row{margin-top:30px; display:flex; flex-wrap:wrap; gap:20px 26px; font-family:'IBM Plex Mono', monospace; font-size:0.83rem; color:var(--ink-soft);}
   .hero .contact-row span{white-space:nowrap;}
-
-  .readout{
-    background:var(--pine-deep); border:1px solid var(--pine-deep);
-    padding:0; overflow:hidden;
-  }
-  .readout-top{padding:18px 20px 4px 20px;}
-  .readout-label{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#9FB6AE; letter-spacing:0.02em;}
-  .readout svg{display:block; width:100%; height:auto;}
-  .readout-stats{display:grid; grid-template-columns:repeat(2,1fr);}
-  .readout-stats div{padding:16px 20px; border-top:1px solid rgba(255,255,255,0.12);}
-  .readout-stats div:nth-child(odd){border-right:1px solid rgba(255,255,255,0.12);}
-  .readout-num{font-family:'IBM Plex Mono', monospace; font-size:1.5rem; color:#EFEFE6; font-weight:600;}
-  .readout-num sup{font-size:0.85rem; color:#9FB6AE;}
-  .readout-cap{font-size:0.72rem; color:#9FB6AE; margin-top:3px;}
 
   .about-grid{display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:start; margin-top:44px;}
   .about-grid p{color:var(--ink-soft); max-width:56ch;}
@@ -157,6 +145,8 @@
     color:var(--ink-soft); font-size:0.82rem; text-align:center; padding:20px;
     font-family:'IBM Plex Mono', monospace;
   }
+  .project-media img{ width:100%; display:block; border:1px solid var(--line); }
+  .featured-img{ width:100%; display:block; border:1px solid rgba(255,255,255,0.25); }
   .project-body .tag{
     display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--pine);
     border:1px solid var(--pine); padding:3px 10px; margin-bottom:12px;
@@ -203,6 +193,13 @@
   .lightbox img{max-width:100%; max-height:100%; box-shadow:0 20px 60px rgba(0,0,0,0.4);}
   .lightbox-close{ position:absolute; top:24px; right:32px; color:#fff; font-size:2rem; background:none; border:none; cursor:pointer; line-height:1; }
 
+  .cv-btn{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+    color:#fff; background:var(--pine); padding:12px 22px; border:1px solid var(--pine);
+    transition:background .15s;
+  }
+  .cv-btn:hover{background:var(--pine-deep); text-decoration:none;}
+
   footer{padding:46px 0 66px 0; text-align:center; color:var(--ink-soft); font-size:0.85rem; font-family:'IBM Plex Mono', monospace;}
   footer a{color:var(--pine);}
 
@@ -219,7 +216,9 @@
     nav ul a{display:block; padding:14px 28px;}
     .nav-toggle{display:block;}
     .hero h1{font-size:1.9rem;}
-    .hero-grid, .about-grid, .project, .skills-grid, .innov-grid{grid-template-columns:1fr;}
+    .about-grid, .project, .skills-grid, .innov-grid{grid-template-columns:1fr;}
+    .hero-top img{width:60px; height:60px;}
+    .hero-top .hero-name{font-size:1.2rem;}
     .project:nth-child(even) .project-media{order:0;}
     .stat-grid{grid-template-columns:repeat(2,1fr);}
     .flow-step::after{display:none;}
@@ -247,18 +246,21 @@
 
 <!-- Hero -->
 <header class="hero" id="about">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="kicker">ingénieure d'état — génie énergétique & systèmes intelligents</div>
-      <h1>Modéliser, optimiser et donner à voir la performance des systèmes industriels.</h1>
-      <p class="lede">Jeune ingénieure spécialisée en jumeaux numériques, modélisation de procédés et systèmes intelligents : de la simulation physique à l'interface de supervision.</p>
-      <div class="contact-row">
-        <span>Fès, Maroc — mobilité nationale</span>
-        <span><a href="mailto:benkarrouaya2021@gmail.com">benkarrouaya2021@gmail.com</a></span>
-        <span>+212 617 290 872</span>
-        <span><a href="#" target="_blank">LinkedIn — https://www.linkedin.com/in/aya-benquarrou-26a13627a/</a></span>
-      </div>
+  <div class="wrap">
+    <div class="hero-top reveal">
+      <img src="images/photo-pr.jpg" alt="Portrait d'Aya Benkarrou">
+      <div class="hero-name">Aya Benkarrou</div>
     </div>
+    <div class="kicker">ingénieure d'état — génie énergétique & systèmes intelligents</div>
+    <h1>Modéliser, optimiser et donner à voir la performance des systèmes industriels.</h1>
+    <p class="lede">Jeune ingénieure spécialisée en jumeaux numériques, modélisation de procédés et systèmes intelligents — de la simulation physique à l'interface de supervision.</p>
+    <div class="contact-row">
+      <span>Fès, Maroc — mobilité nationale</span>
+      <span><a href="mailto:benkarrouaya2021@gmail.com">benkarrouaya2021@gmail.com</a></span>
+      <span>+212 617 290 872</span>
+      <span><a href="https://www.linkedin.com/in/aya-benquarrou-26a13627a/" target="_blank">LinkedIn</a></span>
+    </div>
+  </div>
 
   <div class="wrap about-grid">
     <div class="reveal">
@@ -278,8 +280,8 @@
 <!-- Featured Project -->
 <section class="featured" id="featured">
   <div class="wrap">
-    <div class="kicker">projet de fin d'études</div>
-    <h2 class="reveal">Digital Twin: JFC5 Sulfuric Acid Unit</h2>
+    <div class="kicker">projet vedette — projet de fin d'études</div>
+    <h2 class="reveal">Digital Twin — JFC5 Sulfuric Acid Unit</h2>
     <p class="intro reveal">Jumeau numérique complet d'une unité industrielle multi-étapes (procédé DCDA, OCP Group), combinant modèles physiques, simulation dynamique et supervision temps réel, développé au DICE FactoryLab (UM6P Benguerir).</p>
 
     <div class="flow reveal">
@@ -300,7 +302,7 @@
       <div class="stat-card"><div class="stat-num-static">Py</div><div class="stat-label">Python + SciPy + Streamlit</div></div>
     </div>
 
-    <div class="media-placeholder reveal">Capture d'écran à ajouter (ex. synoptique P&ID Streamlit)</div>
+    <img class="featured-img reveal" src="images/1.jpg" alt="Synoptique de supervision du jumeau numérique JFC5">
   </div>
 </section>
 
@@ -317,25 +319,27 @@
     </div>
 
     <div class="project reveal" data-cat="stage">
+      <div class="project-media"><img src="images/2.jpg" alt="Diagnostic du réseau d'air comprimé — LafargeHolcim"></div>
       <div class="project-body">
         <span class="tag">Stage — LafargeHolcim</span>
-        <h3>Performance énergétique — Réseau d'air comprimé</h3>
+        <h3>Jumeau numérique — Réseau d'air comprimé</h3>
         <p>Diagnostic du parc de compresseurs d'air comprimé de l'usine LafargeHolcim Meknès : modélisation d'un jumeau numérique sous MATLAB/Simulink révélant un taux de fuites de 36 % et un court-cyclage du compresseur esclave. Analyse des causes (Pareto, Ishikawa, 5 Pourquoi) et plan d'action chiffré — 25 000 MAD d'investissement pour ~210 000 MAD d'économies annuelles (ROI de 840 %, retour sous 2 mois).</p>
-        <div class="stack">audit énergétique · amélioration continue</div>
+        <div class="stack">MATLAB/Simulink · Pareto · Ishikawa · ROI</div>
       </div>
     </div>
 
     <div class="project reveal" data-cat="stage">
-      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter</div></div>
+      <div class="project-media"><img src="images/3.jpg" alt="Supervision SCADA du réseau électrique — RADEM"></div>
       <div class="project-body">
         <span class="tag">Stage — RADEM</span>
         <h3>Supervision SCADA — Réseau électrique</h3>
-        <p>Suivi de la chaîne électrique complète, de l'arrivée de l'énergie ONEE jusqu'à sa distribution finale : postes sources (transformation haute tension), postes répartiteurs (répartition vers les zones desservies) et postes de distribution (livraison aux clients). Étude en parallèle des systèmes SCADA utilisés pour la supervision temps réel de ce réseau.</p>
-        <div class="stack">SCADA</div>
+        <p>Suivi de la chaîne électrique complète, de l'arrivée de l'énergie ONEE jusqu'à sa distribution finale : postes sources, postes répartiteurs et postes de distribution. Étude en parallèle des systèmes SCADA utilisés pour la supervision temps réel de ce réseau.</p>
+        <div class="stack">SCADA · réseau électrique</div>
       </div>
     </div>
 
     <div class="project reveal" data-cat="academique">
+      <div class="project-media"><div class="media-placeholder">Pas de capture pour ce projet</div></div>
       <div class="project-body">
         <span class="tag">Projet académique</span>
         <h3>Modélisation thermique par éléments finis</h3>
@@ -345,6 +349,7 @@
     </div>
 
     <div class="project reveal" data-cat="academique">
+      <div class="project-media"><div class="media-placeholder">Pas de capture pour ce projet</div></div>
       <div class="project-body">
         <span class="tag">Projet académique</span>
         <h3>Commande MPPT pour système éolien</h3>
@@ -354,12 +359,17 @@
     </div>
 
     <div class="project reveal" data-cat="academique">
-      <div class="project-media"><div class="media-placeholder">Capture d'écran à ajouter<br>(ex. interface LabVIEW)</div></div>
+      <div class="project-media"><img src="images/4.jpg" alt="Interface LabVIEW du système d'acquisition photovoltaïque"></div>
       <div class="project-body">
-        <span class="tag">Projet académique</span>
-        <h3>Monitoring photovoltaïque en temps réel</h3>
-        <p>Cadre d'acquisition et de traitement de données en temps réel pour une station de monitoring météorologique.</p>
-        <div class="stack">CompactRIO · LabVIEW</div>
+        <span class="tag">Projet académique — Laboratoire LISA, ENSA Fès</span>
+        <h3>Data Acquisition — Systèmes Photovoltaïques</h3>
+        <p>Conception et mise en œuvre d'un système d'acquisition de données en temps réel pour le suivi d'une installation photovoltaïque, sur une architecture industrielle CompactRIO. Développement d'une chaîne d'instrumentation complète intégrant capteurs de température (thermocouple) et d'irradiance solaire (pyranomètre), avec conditionnement du signal, acquisition via modules NI 9211 et NI 9215, et traitement sous LabVIEW.</p>
+        <ul>
+          <li>Interface de visualisation temps réel et enregistrement des données pour l'analyse expérimentale.</li>
+          <li>Mise en évidence de la corrélation entre irradiance et température ainsi que des effets d'inertie thermique sur la performance du système.</li>
+          <li>Résolution de problématiques concrètes de configuration réseau, de déploiement temps réel et de fiabilité de mesure.</li>
+        </ul>
+        <div class="stack">CompactRIO · LabVIEW · NI 9211 / NI 9215</div>
       </div>
     </div>
 
@@ -373,7 +383,7 @@
     <h2 class="reveal">Expérience Professionnelle</h2>
     <div class="timeline reveal">
       <div class="tl-item">
-        <div class="dates">02/02/2026 – 02/08/2026 · Soutenance : 22/06/2026</div>
+        <div class="dates">02/2026 – 08/2026 · Soutenance : 22/06/2026</div>
         <h3>Ingénieure — Projet de Fin d'Études (Digital Twin JFC5)</h3>
         <div class="org">DICE FactoryLab, Université Mohammed VI Polytechnique (UM6P) | Benguerir</div>
         <ul>
@@ -382,20 +392,21 @@
         </ul>
       </div>
       <div class="tl-item">
-        <div class="dates"><span class="todo">[dates à préciser]</span></div>
+        <div class="dates">06/2025 – 08/2025</div>
         <h3>Stagiaire Ingénieure — Performance énergétique industrielle</h3>
         <div class="org">LafargeHolcim | Meknès</div>
         <ul>
-          <li>Diagnostic de performance d'un réseau d'air comprimé industriel : identification de fuites et pertes de charge responsables de 15 % des pertes énergétiques totales du système.</li>
-          <li>Propositions d'amélioration pour un gain annuel estimé à 180 MWh.</li>
+          <li>Modélisation d'un jumeau numérique du parc de compresseurs sous MATLAB/Simulink ; taux de fuites mesuré à 36 % et court-cyclage du compresseur esclave identifié.</li>
+          <li>Analyse des causes (Pareto, Ishikawa, 5 Pourquoi) et plan d'action chiffré : 25 000 MAD d'investissement pour ~210 000 MAD d'économies annuelles (ROI de 840 %, retour sous 2 mois).</li>
         </ul>
       </div>
       <div class="tl-item">
-        <div class="dates"><span class="todo">[dates à préciser]</span></div>
+        <div class="dates">06/2024 – 07/2024</div>
         <h3>Stagiaire Ingénieure — Exploitation du réseau électrique</h3>
         <div class="org">RADEM | Meknès</div>
         <ul>
-          <li>Étude des systèmes SCADA et des outils de supervision temps réel d'un réseau électrique.</li>
+          <li>Observation du réseau électrique de bout en bout : postes sources, postes répartiteurs et postes de distribution, du trajet de l'électricité depuis l'arrivée ONEE jusqu'aux clients.</li>
+          <li>Étude des systèmes SCADA et des outils de supervision temps réel associés.</li>
         </ul>
       </div>
     </div>
@@ -585,7 +596,10 @@
     <div class="contact-row reveal" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:20px 26px; font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--ink-soft);">
       <span><a href="mailto:benkarrouaya2021@gmail.com">benkarrouaya2021@gmail.com</a></span>
       <span>+212 617 290 872</span>
-      <span><a href="#" target="_blank">LinkedIn — [lien à ajouter]</a></span>
+      <span><a href="https://www.linkedin.com/in/aya-benquarrou-26a13627a/" target="_blank">LinkedIn</a></span>
+    </div>
+    <div class="reveal" style="margin-top:26px;">
+      <a href="CV-Aya-Benkarrou.pdf" download class="cv-btn">Télécharger mon CV</a>
     </div>
   </div>
 </section>
